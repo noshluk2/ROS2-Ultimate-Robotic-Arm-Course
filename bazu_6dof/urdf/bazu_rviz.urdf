@@ -1,0 +1,285 @@
+<robot name="bazu">
+  <link name="world"/>
+
+  <link name="base">
+      <inertial>
+        <mass value="20"/>
+        <inertia ixx="3" ixy="0" ixz="0" iyy="3" iyz="0" izz="0.3" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+      <geometry>
+        <!-- <mesh filename="/home/luqman/ros2_workspace/src/bazu_6dof/meshes/base.stl"/> -->
+        <mesh filename="package://bazu_6dof/base.stl"  />
+      </geometry>
+        <material name="white">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+  
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/base.stl"  />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="base_joint" type="fixed">
+      <parent link="world"/>
+      <child link="base"/>
+    </joint>
+
+
+  <link name="link_1">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_1.stl"  />
+        </geometry>
+        <material name="black">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_1.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_1" type="continuous">
+      <parent link="base"/>
+      <child link="link_1"/>
+      <origin xyz="0 0 0.5" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 0 1"/>
+    </joint>
+
+
+
+    <link name="link_2">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_2.stl"  />
+        </geometry>
+        <material name="black">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_2.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_2" type="revolute">
+      <limit effort="1000.0"  lower='-2.6' upper='0.22'  velocity="0.5"/>
+      
+      <parent link="link_1"/>
+      <child link="link_2"/>
+      <origin xyz="0 0 0.2" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 1 0"/>
+      
+       
+    </joint>
+
+
+    <link name="link_3">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_3.stl"  />
+        </geometry>
+        <material name="white">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_3.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_3" type="revolute">
+      <parent link="link_2"/>
+      <child link="link_3"/>
+      <origin xyz="1.71 0 0.824" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 1 0"/>
+      <limit effort="1000.0"  lower='-0.9' upper='2.22' velocity="0.5"/>
+        
+    </joint>
+
+
+
+    <link name="link_4">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_4.stl"  />
+        </geometry>
+        <material name="black">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_4.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_4" type="revolute">
+      <parent link="link_3"/>
+      <child link="link_4"/>
+      <origin xyz="-0.25 0 1.73" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 1 0"/>
+      <limit effort="1000.0"   lower='-1.65' upper='1.17'  velocity="0.5"/>
+      
+    </joint>
+
+
+
+
+    <link name="link_5">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_5.stl"  />
+        </geometry>
+        <material name="white">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_5.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_5" type="continuous">
+      <parent link="link_4"/>
+      <child link="link_5"/>
+      <origin xyz="0 0 0.45" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 0 1"/>
+    </joint>
+
+
+
+
+    <link name="link_6">
+      <inertial>
+        <mass value="10"/>
+        <inertia ixx="1" ixy="0" ixz="0" iyy="2.5" iyz="0" izz="0.5" />
+        <origin/>
+      </inertial>
+  
+      <visual>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_6.stl"  />
+        </geometry>
+        <material name="black">
+        </material>
+      </visual>
+
+      <collision>
+        <geometry>
+          <mesh filename="package://bazu_6dof/joint_6.stl"  />
+        </geometry>
+        <contact_coefficients mu="0" kp="1000.0" kd="1.0"/>
+      </collision>
+
+    </link>
+
+    <joint name="joint_6" type="revolute">
+      <parent link="link_5"/>
+      <child link="link_6"/>
+      <origin xyz="0 -0.02 0.55" rpy="0 0.0 0.0"/>
+      <axis xyz=" 0 1 0"/>
+      <limit effort="1000.0"  lower='-1.14' upper='0.73' velocity="0.5"/>
+      
+      
+    </joint>
+<!--
+<transmission name="transmission_arm1_a">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="arm1_a_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_arm_1_a">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<transmission name="transmission_arm1_b">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="arm1_b_joint">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="motor_arm_1_b">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+  </plugin>
+</gazebo>
+
+<gazebo reference="base">
+<material>Gazebo/Black</material>
+</gazebo>
+<gazebo reference="pillar">
+<material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="arm_holder">
+<material>Gazebo/Orange</material>
+</gazebo>
+<gazebo reference="arm1_a">
+<material>Gazebo/Yellow</material>
+</gazebo>
+<gazebo reference="arm1_b">
+<material>Gazebo/Blue</material>
+</gazebo> -->
+</robot>
